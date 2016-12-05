@@ -2,3 +2,5 @@
 .baseDir.ts
 dist
 node_modules
+
+*.sublime-project
