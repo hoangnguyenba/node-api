@@ -50,7 +50,10 @@ export class UserApi extends BaseApi {
     if(id in this.users) {
       var r = this.users[req.params.id];
       // Send result
-      this.send(req, res, r);
+      this.send(req, res, {
+        status: true,
+        data: r
+      });
     } else {
       var r: any = {
         "status": false,
