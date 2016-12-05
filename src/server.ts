@@ -57,12 +57,11 @@ export class Server {
    * @method api
    */
   public api() {
-    //empty for now
     let router: express.Router;
     router = express.Router();
 
-    //IndexRoute
-    UserApi.create(router);
+    //User Api
+    new UserApi().addRouter(router);
 
     //use router middleware
     this.app.use("/api", router);
@@ -77,10 +76,6 @@ export class Server {
   public config() {
     //add static paths
     this.app.use(express.static(path.join(__dirname, "public")));
-
-    //configure pug
-    this.app.set("views", path.join(__dirname, "views"));
-    this.app.set("view engine", "pug");
 
     //mount logger
     this.app.use(logger("dev"));

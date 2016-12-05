@@ -1,17 +1,20 @@
 import { NextFunction, Request, Response, Router } from "express";
+import * as _ from 'lodash';
 import { BaseApi } from "./api";
 
 
 /**
- * / route
+ * / api
  *
  * @class User
  */
 export class UserApi extends BaseApi {
 
+  public dataName = "users";
+
 
   //set message
-  users: Object = [
+  users: [any] = [
     {
       "id"  : "1",
       "name": "Hoang Nguyen"
@@ -21,44 +24,6 @@ export class UserApi extends BaseApi {
       "name": "Songoku"
     }
   ];
-
-
-  /**
-   * Create the apis.
-   *
-   * @class UserApi
-   * @method create
-   * @static
-   */
-  public static create(router: Router) {
-    //log
-    console.log("[UserApi::create] Creating user api.");
-
-    router.route("/users")
-      
-      .get((req: Request, res: Response, next: NextFunction) => {
-        new UserApi().getList(req, res, next);
-      })
-
-      .post((req: Request, res: Response, next: NextFunction) => {
-
-      })
-
-
-    router.route("/users/:user_id")
-
-      .get((req: Request, res: Response, next: NextFunction) => {
-        new UserApi().getUser(req, res, next);
-      })
-
-      .put((req: Request, res: Response, next: NextFunction) => {
-
-      })
-
-      .delete((req: Request, res: Response, next: NextFunction) => {
-
-      })
-  }
 
   /**
    * Constructor
@@ -71,34 +36,46 @@ export class UserApi extends BaseApi {
   }
 
   /**
-   * The home page route.
+   * The user api
    *
    * @class UserApi
-   * @method getList
+   * @method read
    * @param req {Request} The express Request object.
    * @param res {Response} The express Response object.
    * @next {NextFunction} Execute the next method.
    */
-  public getList(req: Request, res: Response, next: NextFunction) {
+  public read(req: Request, res: Response, next: NextFunction) {
 
-    // Send result
-    this.send(req, res, this.users);
+    let id = req.params.id;
+    if(id in this.users) {
+      var r = this.users[req.params.id];
+      // Send result
+      this.send(req, res, r);
+    } else {
+      var r: any = {
+        "status": false,
+        "message": "User does not exist"
+      };
+
+      this.send(req, res, r);
+    }
+
   }
 
   /**
-   * The home page route.
+   * The user api
    *
    * @class UserApi
-   * @method getUser
+   * @method create
    * @param req {Request} The express Request object.
    * @param res {Response} The express Response object.
    * @next {NextFunction} Execute the next method.
    */
-  public getUser(req: Request, res: Response, next: NextFunction) {
-
-    var r = this.users[req.params.user_id]
-
-    // Send result
-    this.send(req, res, r);
+  public create(req: Request, res: Response, next: NextFunction) {
+    let id = this.users.length;
+    this.users.push({id: id, name: req.body.name});
+    this.send(req, res, {
+      status: true
+    });
   }
 }
