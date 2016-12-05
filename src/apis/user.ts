@@ -39,6 +39,24 @@ export class UserApi extends BaseApi {
    * The user api
    *
    * @class UserApi
+   * @method list
+   * @param req {Request} The express Request object.
+   * @param res {Response} The express Response object.
+   * @next {NextFunction} Execute the next method.
+   */
+  public list(req: Request, res: Response, next: NextFunction) {
+
+    this.send(req, res, {
+      status: true,
+      data: this.users
+    });
+
+  }
+
+  /**
+   * The user api
+   *
+   * @class UserApi
    * @method read
    * @param req {Request} The express Request object.
    * @param res {Response} The express Response object.
