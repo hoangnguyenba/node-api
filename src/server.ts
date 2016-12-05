@@ -6,7 +6,8 @@ import * as path from "path";
 import errorHandler = require("errorhandler");
 import methodOverride = require("method-override");
 
-import { IndexRoute } from "./routes/index";
+// import { IndexRoute } from "./routes/index";
+import { UserApi } from "./apis/user";
 
 /**
  * The server.
@@ -57,6 +58,14 @@ export class Server {
    */
   public api() {
     //empty for now
+    let router: express.Router;
+    router = express.Router();
+
+    //IndexRoute
+    UserApi.create(router);
+
+    //use router middleware
+    this.app.use("/api", router);
   }
 
   /**
@@ -108,14 +117,14 @@ export class Server {
    * @return void
    */
   private routes() {
-    let router: express.Router;
-    router = express.Router();
+    // let router: express.Router;
+    // router = express.Router();
 
-    //IndexRoute
-    IndexRoute.create(router);
+    // //IndexRoute
+    // IndexRoute.create(router);
 
-    //use router middleware
-    this.app.use(router);
+    // //use router middleware
+    // this.app.use(router);
   }
 
 }

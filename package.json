@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon ./bin/www",
     "grunt": "grunt",
-    "start": "node ./bin/www"
+    "start": "grunt && node ./bin/www"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
