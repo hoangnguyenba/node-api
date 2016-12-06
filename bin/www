@@ -3,14 +3,17 @@
 
 //module dependencies
 var server = require("../dist/server");
+var socket = require("../dist/socket")
 var debug = require("debug")("express:server");
 var http = require("http");
 
 //create http server
-var httpPort = normalizePort(process.env.PORT || 8080);
+var httpPort = normalizePort(process.env.PORT || 3000);
 var app = server.Server.bootstrap().app;
 app.set("port", httpPort);
 var httpServer = http.createServer(app);
+
+socket.Socket.bootstrap(httpServer);
 
 //listen on provided ports
 httpServer.listen(httpPort);

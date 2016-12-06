@@ -1,4 +1,5 @@
 import * as bodyParser from "body-parser";
+import * as cors from "cors";
 import * as cookieParser from "cookie-parser";
 import * as express from "express";
 import * as logger from "morgan";
@@ -64,7 +65,7 @@ export class Server {
     new UserApi().addRouter(router);
 
     //use router middleware
-    this.app.use("/api", router);
+    this.app.use("/", router);
   }
 
   /**
@@ -74,8 +75,11 @@ export class Server {
    * @method config
    */
   public config() {
+
+    this.app.use(cors());
+
     //add static paths
-    this.app.use(express.static(path.join(__dirname, "public")));
+    // this.app.use(express.static(path.join(__dirname, "public")));
 
     //mount logger
     this.app.use(logger("dev"));
