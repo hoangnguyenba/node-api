@@ -1,6 +1,15 @@
 #!/usr/bin/env node
 "use strict";
 
+var fs = require('fs');
+
+// Create config from env( dev, prod )
+if (process.argv[2] === undefined || process.argv[2] === "dev") {
+    process.env.ENV = "dev";
+}
+
+fs.createReadStream('./dist/config/config.' + process.env.ENV + '.js').pipe(fs.createWriteStream('./dist/config/config.js'));
+
 //module dependencies
 var server = require("../dist/server");
 var socket = require("../dist/socket")
@@ -53,8 +62,8 @@ function onError(error) {
   }
 
   var bind = typeof port === "string"
-    ? "Pipe " + port
-    : "Port " + port;
+    ? "Pipe " + httpPort
+    : "Port " + httpPort;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {

@@ -1,0 +1,12 @@
+[
+	{
+		"thread_id": "store_a",
+		"author": "admin1",
+		"message": "Hello"
+	},
+	{
+		"thread_id": "store_a",
+		"author": "admin2",
+		"message": "Hi there"
+	}
+]

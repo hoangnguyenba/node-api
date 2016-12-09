@@ -6,12 +6,14 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon ./bin/www",
     "grunt": "grunt",
-    "start": "grunt && node ./bin/www"
+    "start": "grunt && node ./bin/www",
+    "db": "node ./scripts/db.js"
   },
   "dependencies": {
     "@types/cors": "0.0.33",
     "@types/lodash": "^4.14.41",
     "@types/socket.io": "^1.4.27",
+    "aws-sdk": "^2.7.13",
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",
@@ -21,7 +23,6 @@
     "method-override": "^2.3.6",
     "mongodb": "^2.2.12",
     "morgan": "^1.7.0",
-    "pug": "^2.0.0-beta6",
     "socket.io": "^1.7.1"
   },
   "devDependencies": {
