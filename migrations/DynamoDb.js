@@ -64,6 +64,7 @@ class DynamoDb extends BaseDb {
                 } else {
                     console.log("PutItem succeeded:", JSON.stringify(item));
                 }
+				callback(err, data);
             });
         });
 	}

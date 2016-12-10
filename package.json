@@ -7,7 +7,8 @@
     "dev": "NODE_ENV=development nodemon ./bin/www",
     "grunt": "grunt",
     "start": "grunt && node ./bin/www",
-    "db": "node ./scripts/db.js"
+    "db": "node ./migrations/db.js",
+    "migrate": "node node_modules/migrate/bin/migrate"
   },
   "dependencies": {
     "@types/cors": "0.0.33",
@@ -21,6 +22,7 @@
     "express": "^4.14.0",
     "lodash": "^4.17.2",
     "method-override": "^2.3.6",
+    "migrate": "^0.2.3",
     "mongodb": "^2.2.12",
     "morgan": "^1.7.0",
     "socket.io": "^1.7.1"
