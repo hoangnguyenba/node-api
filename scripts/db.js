@@ -23,16 +23,15 @@ if(typeof process.argv[3] !== "undefined")
     table = process.argv[3];
 }
 
-// var tables = [];
-// if(table === "all")
-// {
-//     tables = ARR_TABLE;
-// }
-// else
-// {
-//     tables.push(table);
-// }
-
+if(table !== "all")
+{
+    data.forEach((t,i) => {
+        if(t.name !== table)
+        {
+            delete data[i];
+        }
+    });
+}
 
 var db = new DynamoDb();
 data.forEach((t) => {
