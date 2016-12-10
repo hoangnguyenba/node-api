@@ -1,0 +1,81 @@
+[
+	{
+		"name": "user",
+		"data": [
+			{
+				"id": "admin1",
+				"name": "Admin 1"
+			},
+			{
+				"id": "admin2",
+				"name": "Admin 2"
+			}
+		],
+		"structure": {
+		    "KeySchema": [       
+		        { "AttributeName": "id", "KeyType": "HASH"}
+		    ],
+		    "AttributeDefinitions": [       
+		        { "AttributeName": "id", "AttributeType": "S" }
+		    ],
+		    "ProvisionedThroughput": {       
+		        "ReadCapacityUnits": 10, 
+		        "WriteCapacityUnits": 10
+		    }
+		}
+	},
+	{
+		"name": "thread",
+		"data": [
+			{
+				"id": "store_a",
+				"name": "Store A"
+			},
+			{
+				"id": "store_b",
+				"name": "Store B"
+			}
+		],
+		"structure": {
+		    "KeySchema": [       
+		        { "AttributeName": "id", "KeyType": "HASH"}
+		    ],
+		    "AttributeDefinitions": [       
+		        { "AttributeName": "id", "AttributeType": "S" }
+		    ],
+		    "ProvisionedThroughput": {       
+		        "ReadCapacityUnits": 10, 
+		        "WriteCapacityUnits": 10
+		    }
+		}
+	},
+	{
+		"name": "message",
+		"data": [
+			{
+				"thread_id": "store_a",
+				"author": "admin1",
+				"message": "Hello"
+			},
+			{
+				"thread_id": "store_a",
+				"author": "admin2",
+				"message": "Hi there"
+			}
+		],
+		"structure": {
+		    "KeySchema": [       
+		        { "AttributeName": "thread_id", "KeyType": "HASH"},
+		        { "AttributeName": "created_at", "KeyType": "RANGE" }
+		    ],
+		    "AttributeDefinitions": [       
+		        { "AttributeName": "thread_id", "AttributeType": "S" },
+		        { "AttributeName": "created_at", "AttributeType": "N" }
+		    ],
+		    "ProvisionedThroughput": {       
+		        "ReadCapacityUnits": 10, 
+		        "WriteCapacityUnits": 10
+		    }
+		}
+	}
+]
