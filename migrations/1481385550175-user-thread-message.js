@@ -2,8 +2,10 @@
 
 var config = require('../dist/config/config');
 
-var DynamoDb = require('./DynamoDb');
-var db = new DynamoDb();
+// var DynamoDb = require('./DynamoDb');
+// var db = new DynamoDb();
+var MongoDb = require('./MongoDb');
+var db = new MongoDb();
 var fs = require('fs');
 var data = JSON.parse(fs.readFileSync(__dirname + '/data.json', 'utf8'));
 
