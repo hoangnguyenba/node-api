@@ -9,6 +9,7 @@ import methodOverride = require("method-override");
 
 // import { IndexRoute } from "./routes/index";
 import { UserApi } from "./apis/user";
+import { AuthApi } from "./apis/auth";
 
 /**
  * The server.
@@ -63,6 +64,7 @@ export class Server {
 
     //User Api
     new UserApi().addRouter(router);
+    new AuthApi().addRouter(router);
 
     //use router middleware
     this.app.use("/", router);

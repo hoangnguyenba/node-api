@@ -1,14 +1,20 @@
 #!/usr/bin/env node
 "use strict";
 
-var fs = require('fs');
+var fs = require('fs-extra');
 
 // Create config from env( dev, prod )
 if (process.argv[2] === undefined || process.argv[2] === "dev") {
     process.env.ENV = "dev";
 }
 
-fs.createReadStream('./dist/config/config.' + process.env.ENV + '.js').pipe(fs.createWriteStream('./dist/config/config.js'));
+try {
+  fs.copySync('./dist/config/config.' + process.env.ENV + '.js', './dist/config/config.js')
+} catch (err) {
+  console.error(err)
+}
+
+// fs.createReadStream('./dist/config/config.' + process.env.ENV + '.js').pipe(fs.createWriteStream('./dist/config/config.js'));
 
 //module dependencies
 var server = require("../dist/server");
