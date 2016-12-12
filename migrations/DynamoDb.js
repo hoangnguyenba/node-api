@@ -1,6 +1,6 @@
 var BaseDb = require('./BaseDb');
 
-var config = require('../dist/config/config');
+var config = require('../dist/config/config').config;
 var AWS = require("aws-sdk");
 AWS.config.update(config.database);
 
@@ -8,6 +8,8 @@ var dynamoDB = new AWS.DynamoDB();
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 var fs = require('fs');
+
+var bcrypt = require('bcrypt-nodejs');
 
 
 class DynamoDb extends BaseDb {
@@ -53,6 +55,9 @@ class DynamoDb extends BaseDb {
 		console.log("Adding data " + table.name + " ...");
         table.data.forEach(function(item) {
             item.created_at = new Date().getTime();
+			if(item.password !== undefined) {
+				item.password = bcrypt.hashSync(item.password);
+			}
             var params = {
                 TableName: config.prefix_table + capitalizeFirstLetter(table.name),
                 Item: item

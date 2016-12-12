@@ -78,7 +78,7 @@ export class AuthApi extends BaseApi {
               });
           } else {
               res.json({
-                  status: false,
+                  status: true,
                   data: {
                       token: createToken(data)
                   }
