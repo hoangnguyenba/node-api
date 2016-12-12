@@ -1,7 +1,7 @@
-import { BaseDynamoDbModel } from "./dynamodb-base";
+import { BaseDynamoDbModel } from "./base";
 
 import * as bcrypt from "bcrypt-nodejs";
-import { config } from "../config/config";
+import { config } from "../../config/config";
 
 export enum UserType {
     Admin = 0,

@@ -1,4 +1,4 @@
-import { UserDynamoDbModel as UserModel } from "../models/dynamodb-user";
+import { UserDynamoDbModel as UserModel } from "../models/dynamodb/user";
 import { IUser } from "./user.interface";
 
 export class UserRepository implements IUser {

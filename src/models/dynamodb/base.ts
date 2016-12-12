@@ -1,4 +1,5 @@
-import { config } from "../config/config";
+import { config } from "../../config/config";
+import { BaseModel } from "../base"
 
 import * as AWS from "aws-sdk";
 
@@ -6,13 +7,13 @@ AWS.config.update(config.database);
 
 var database = new AWS.DynamoDB.DocumentClient();
 
-export class BaseDynamoDbModel {
+export class BaseDynamoDbModel extends BaseModel {
     _TABLE_NAME: string = "";
     KEY: string = "";
     SORT: string = "";
 
     constructor() {
-        
+        super();
     }
 
     get TABLE_NAME() {
